@@ -12,4 +12,5 @@ public class Join {
     private Integer order_detail_id;
     private Integer product_id;
     private Integer quantity;
+    private String id;
 }

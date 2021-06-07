@@ -38,7 +38,8 @@ public class App {
                         leftValue.getCustomer_id(),
                         rightValue.getId(),
                         rightValue.getProduct_id(),
-                        rightValue.getQuantity()
+                        rightValue.getQuantity(),
+                        leftValue.getId() + "-" + rightValue.getId()
                 ),
                 JoinWindows.of(Duration.ofSeconds(30)),
                 Joined.with(
