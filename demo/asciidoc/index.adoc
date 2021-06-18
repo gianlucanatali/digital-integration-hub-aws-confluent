@@ -43,14 +43,12 @@ ____
 == Demo Tutorial
 
 Open Control Center in your browser link:http://{externalip}:9021[here, window=_blank]
+Username: dc01
+Password: (as Config file)
 
 Notice that you have 3 clusters available. 
 
 * CO: Confluent Platform running in a VM
 * CC: Confluent Cloud in AWS
 
-== MongoDB Atlas
-You should see a similar result in your MongoDB Atlas Cloud account
-
-image::{resourcepath}/images/019.png[MongoDB Atlas table]
 

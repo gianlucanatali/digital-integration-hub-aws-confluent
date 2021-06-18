@@ -45,6 +45,8 @@ For this approach you need the following installed in your computer.
 
 ### Create the demo environment
 
+1. Make sure you are logged in the Confluent Cloud CLI:
+    - `ccloud login --save`
 1. execute `./create_demo_environment.sh`
 1. The script will prompt you to confirm twice.
     - The first time it will ask you if you are ok to create resources in Confluent Cloud, you must answer YES
