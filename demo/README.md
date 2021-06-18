@@ -7,8 +7,7 @@ In this demo we'll use:
 1. Confluent Platform
 1. Confluent Cloud
 1. Confluent Replicator
-1. Google Cloud Platform
-1. MongoDB Atlas
+1. AWS
 
 
 ![Diagram of what's being built with the Bridge to Cloud Demo](asciidoc/images/architecture.png)
