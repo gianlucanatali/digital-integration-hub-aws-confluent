@@ -18,7 +18,6 @@ function welcome_screen {
     local DEMO_IP=$VM_HOST
     local DEMO_SITE="http://${DEMO_IP}"
     local C3_LINK="http://${DEMO_IP}:9021"
-    local REALM_APP_LINK="https://${REALM_APP_ID}.mongodbstitch.com"
 
     echo "                                                                                       ";
     echo "██████╗ ██╗ ██████╗ ██╗████████╗ █████╗ ██╗                                            ";
@@ -155,7 +154,7 @@ function create_infrastructure (){
 
     # Read VM IP from workshop terraform output
     VM_HOST=$(terraform output -json -state=${WS_STATE_FILE_PATH} | jq ".external_ip_addresses.value[0]" -r)
-    REALM_APP_ID=$(terraform output -json -state=${WS_STATE_FILE_PATH} | jq ".realm_app_id.value" -r)
+    
 
     # Initialize demo using terraform
     create_tfvars_file
@@ -186,7 +185,6 @@ function start_demo {
     get_ccloud_stack
 
     check_jq || exit 1
-    check_realm_cli || exit 1
 
     init_vars_from_config
 
