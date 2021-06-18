@@ -1,4 +1,4 @@
-# Bridge to Cloud (and back!) with Confluent and MongoDB Atlas
+# Demo: Confluent + AWS - Digital Integration Hub
 This is a joint demo to showcase the power of Confluent and MongoDB together.
 
 You can watch a recording of the joint webinar including the demo here: [Stream me to the Cloud (and back) with Confluent & MongoDB](https://www.mongodb.com/presentations/stream-me-to-the-cloud-and-back)
