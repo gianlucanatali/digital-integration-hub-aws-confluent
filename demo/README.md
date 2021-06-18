@@ -11,7 +11,7 @@ In this demo we'll use:
 1. MongoDB Atlas
 
 
-![Diagram of what's being built with the Bridge to Cloud Demo](docs/resources/images/architecture.png)
+![Diagram of what's being built with the Bridge to Cloud Demo](asciidoc/images/architecture.png)
 
 
 
