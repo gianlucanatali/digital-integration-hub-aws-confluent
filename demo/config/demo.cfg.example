@@ -1,0 +1,28 @@
+export CLOUD_PROVIDER="aws"
+export DEMO_NAME="confluentdib"
+export DEMO_PASSWORD="Confluent123!"
+export SCHEMA_REGISTRY_GEO="eu"
+export CLUSTER_REGION="eu-west-2"
+# If you want to resuse an existing environment uncomment this
+#export ENVIRONMENT="txywsd"
+
+export AWS_REGION="<YOUR_AWS_REGION>"
+export AWS_ACCESS_KEY="<YOUR_AWS_ACCESS_KEY>"
+export AWS_SECRET_KEY="<YOUR_AWS_SECRET_KEY>"
+# For Europe
+export AWS_AMI="ami-0eb89db7593b5d434"
+# SG - Ubuntu Server 18.04 LTS (HVM), SSD Volume Type
+#export AWS_AMI="ami-0f7719e8b7ba25c61"
+# us-east-2 - Ubuntu Server 18.04 LTS (HVM), SSD Volume Type
+#export AWS_AMI="ami-0b9064170e32bde34"
+
+# ------- AWS REDSHIFT ----- #
+# A Redshift instance will be created, configure your desired DB username and password below.
+# https://docs.aws.amazon.com/redshift/latest/dg/r_CREATE_USER.html
+# For clear text, the password must meet the following constraints:
+# It must be 8 to 64 characters in length.
+# It must contain at least one uppercase letter, one lowercase letter, and one number.
+# It can use any ASCII characters with ASCII codes 33–126, except ' (single quote), " (double quote), \, /, or @.
+export AWS_RS_USERNAME="<YOUR_DESIRED_AWS_REDSHIFT_DB_USERNAME>"
+export AWS_RS_PASSWORD="<YOUR_DESIRED_AWS_REDSHIFT_DB_PASSWORD>"
+
