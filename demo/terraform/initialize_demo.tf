@@ -1,3 +1,13 @@
+####### Referencing other terraform output ######
+
+data "terraform_remote_state" "workshop" {
+  backend = "local"
+
+  config = {
+    path = "${path.module}/../tmp/.terraform_staging/terraform.tfstate"
+  }
+}
+
 resource "null_resource" "init_demo" {
 
 // Copy init_demo script to the VM
@@ -81,7 +91,9 @@ data "archive_file" "lambda_zip_file" {
   type        = "zip"
   output_path = "../tmp/get_customer_360.zip"
   source {
-    content  = file(var.lambda_file_data)
+    content  = templatefile("${path.module}/get_customer_360.py.tpl", { 
+      dynamodb_table_name = data.terraform_remote_state.workshop.outputs.dynamodb_table_name
+    })
     filename = "lambda_function.py"
   }
 }
@@ -178,8 +190,12 @@ resource "aws_lambda_permission" "apigw_lambda" {
   principal     = "apigateway.amazonaws.com"
 
   # More: http://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-control-access-using-iam-policies-to-invoke-api.html
-  source_arn = "arn:aws:execute-api:${var.region}:${var.accountId}:${aws_api_gateway_rest_api.api.id}/*/${aws_api_gateway_method.method.http_method}${aws_api_gateway_resource.resource.path}"
+  source_arn = "${aws_api_gateway_rest_api.api.execution_arn}/*/${aws_api_gateway_method.method.http_method}${aws_api_gateway_resource.resource.path}"
 }
+
+
+
+
 
 ####### Variables ###########
 
@@ -199,10 +215,6 @@ variable "region" {
 }
 
 variable "accountId" {
-}
-
-variable "lambda_file_data" {
-  default = "./get_customer_360.py"
 }
 
 
