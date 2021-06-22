@@ -211,11 +211,6 @@ variable "vm_host" {
   description = "VM HOST , will be used to ssh"
 }
 
-variable "region" {
-}
-
-variable "accountId" {
-}
 
 
 
