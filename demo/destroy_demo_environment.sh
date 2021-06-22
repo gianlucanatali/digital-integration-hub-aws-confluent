@@ -57,10 +57,12 @@ function end_demo {
   
   check_jq || exit 1
 
-  destroy_ccloud_resources
+  
 
   get_hybrid_workshop_repo
   destroy_infrastructure  
+
+  destroy_ccloud_resources
  
   #rm -f "${TMP_FOLDER}/cluster_1.client.config"
 

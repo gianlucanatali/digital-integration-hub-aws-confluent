@@ -87,6 +87,15 @@ resource "null_resource" "init_demo" {
 
 ####### AWS Lambda ###########
 
+resource "random_string" "lambda_func_random_string" {
+  length = 4
+  special = false
+  upper = false
+  lower = true
+  number = false
+}
+
+
 data "archive_file" "lambda_zip_file" {
   type        = "zip"
   output_path = "../tmp/get_customer_360.zip"
@@ -99,7 +108,7 @@ data "archive_file" "lambda_zip_file" {
 }
 
 resource "aws_iam_role" "iam_for_lambda" {
-  name = "iam_for_lambda-confluent-demo"
+  name = "iam_for_lambda-confluent-demo-${random_string.lambda_func_random_string.result}"
 
   assume_role_policy = <<EOF
 {
@@ -125,7 +134,7 @@ resource "aws_iam_role_policy_attachment" "attach" {
 
 resource "aws_lambda_function" "get_customer_360" {
   filename         = data.archive_file.lambda_zip_file.output_path
-  function_name    = "get_customer_360"
+  function_name    = "get_customer_360_${random_string.lambda_func_random_string.result}"
   role             = aws_iam_role.iam_for_lambda.arn
   source_code_hash = filebase64sha256(data.archive_file.lambda_zip_file.output_path)
   handler          = "lambda_function.lambda_handler"
@@ -136,7 +145,7 @@ resource "aws_lambda_function" "get_customer_360" {
 ####### API Gateway Integration ###########
 
 resource "aws_api_gateway_rest_api" "api" {
-  name = "demo-aws-confluent-api"
+  name = "demo-aws-confluent-api-${random_string.lambda_func_random_string.result}"
   binary_media_types = ["*/*"]
   
   endpoint_configuration {
@@ -145,7 +154,7 @@ resource "aws_api_gateway_rest_api" "api" {
 }
 
 resource "aws_api_gateway_resource" "resource" {
-  path_part   = "get_customer_360"
+  path_part   = "get_customer_360_${random_string.lambda_func_random_string.result}"
   parent_id   = aws_api_gateway_rest_api.api.root_resource_id
   rest_api_id = aws_api_gateway_rest_api.api.id
 }
